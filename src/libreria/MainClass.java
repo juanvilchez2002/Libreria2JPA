@@ -4,21 +4,24 @@
  */
 package libreria;
 
+import java.text.ParseException;
 import java.util.Scanner;
 import libreria.servicios.AutorServicio;
 import libreria.servicios.ClienteServicio;
 import libreria.servicios.EditorialServicio;
 import libreria.servicios.LibroServicio;
+import libreria.servicios.PrestamoServicio;
 
 
 public class MainClass {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws ParseException {
         //instanciando los servicios        
         LibroServicio ls = new LibroServicio();
         AutorServicio as = new AutorServicio();
         EditorialServicio es = new EditorialServicio();
         ClienteServicio cs = new ClienteServicio();
+        PrestamoServicio ps = new PrestamoServicio();
         
         Scanner consola = new Scanner(System.in).useDelimiter("\t");
         
@@ -35,7 +38,8 @@ public class MainClass {
             System.out.println("7. Buscar Libro por Autor. ");
             System.out.println("8. Buscar Libro por Editorial. ");
             System.out.println(" ----------------------------");
-            System.out.println("A. Ingresar Cliente. ");            
+            System.out.println("A. Ingresar Cliente. "); 
+            System.out.println("B. Ingresar Prestamo. ");         
             System.out.println(" ----------------------------");
             System.out.println("9. Salir.");
             System.out.println("Seleccione una Opcion: ");
@@ -80,6 +84,9 @@ public class MainClass {
                     break;
                 case "A":
                     cs.crearCliente();
+                    break;
+                case "B":
+                    ps.registrarPrestamo();
                     break;
                 default:
                     System.out.println("Ingreso un opcion invalida!!");;

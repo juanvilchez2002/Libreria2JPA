@@ -53,5 +53,18 @@ public class LibroDAO extends DAO<Libro>{
         return libros;
     }
     
+    public List<Libro> listarLibros(){
+        conectar();
+        List<Libro> libros = em.createQuery("SELECT l FROM Libro l ")
+                .getResultList();
+        desconectar();
+        return libros;
+    }
+    
+    public Libro buscarLibroPorId(Long id){
+        conectar();
+        Libro libro= (Libro) em.find(Libro.class, id);        
+        return libro;
+    }
     
 }

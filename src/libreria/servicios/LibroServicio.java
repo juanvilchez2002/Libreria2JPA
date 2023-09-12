@@ -25,7 +25,7 @@ public class LibroServicio {
     }
     
     
-    public void crearLibro(){        
+    public Libro crearLibro(){        
         Libro libro = new Libro();
         
         do{
@@ -115,6 +115,8 @@ public class LibroServicio {
             throw e;
         }
         
+        return libro;
+        
     }
     
     public List<Libro> buscarLibroTitulo(String titulo){
@@ -174,5 +176,30 @@ public class LibroServicio {
                 System.out.println("\t"+lib.getEjemplaresRestantes());
             }            
         }
+    }
+    
+    public void listarLibros(){
+        
+        ArrayList<Libro> libros = new ArrayList(dao.listarLibros());
+        
+        if(libros.isEmpty()){
+            System.out.println("No hay libros ingresados");
+        }else{
+            System.out.println("ISBN\tTITULO\tAUTOR\tEDITORIAL\tEJEMPLARES\tPRESTADOS\tDISPONIBLES");
+            for(Libro lib: libros){
+                System.out.print(lib.getIsbn()+"\t"+lib.getTitulo()+"\t"+lib.getAutor().getNombre()+"\t");
+                System.out.print(lib.getEditorial().getNombre()+"\t"+lib.getEjemplares()+"\t"+lib.getEjemplaresPrestados());
+                System.out.println("\t"+lib.getEjemplaresRestantes());
+            }            
+        }
+    }
+    
+    public Libro buscarLibroPorId(Long id){
+        Libro cliente = dao.buscarLibroPorId(id);
+        return cliente;
+    }
+        
+    public void actualizarLibro(Libro libro){
+        dao.editar(libro);
     }
 }

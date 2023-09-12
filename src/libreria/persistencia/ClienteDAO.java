@@ -38,4 +38,10 @@ public class ClienteDAO extends DAO<Cliente>{
             desconectar();
         }
     }
+    
+    public Cliente buscarClientePorId(Integer id){
+        conectar();
+        Cliente cliente= (Cliente) em.find(Cliente.class, id);        
+        return cliente;
+    }
 }

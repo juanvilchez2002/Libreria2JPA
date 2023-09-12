@@ -17,7 +17,7 @@ public class ClienteServicio {
        this.consola = new Scanner(System.in);
     }
     
-    public void crearCliente(){
+    public Cliente crearCliente(){
         System.out.println("---- CREAR CLIENTE NUEVO ---");
         
         Cliente cliente = new Cliente();
@@ -71,6 +71,7 @@ public class ClienteServicio {
         
         dao.guardar(cliente);
         System.out.println("Cliente Registrado");
+        return cliente;
     }
     
     public boolean buscarClientePorDNI(Long dni){
@@ -79,8 +80,7 @@ public class ClienteServicio {
             return false;
         }else{
             System.out.println("El DNI esta registrado");
-            return true;
-            
+            return true;            
         }
     }
     
@@ -102,5 +102,11 @@ public class ClienteServicio {
         }catch(Exception e){
             throw e;
         }        
+    }
+    
+    public Cliente buscarClientePorId(Integer id){
+        System.out.println("Hola");
+        Cliente cliente = dao.buscarClientePorId(id);
+        return cliente;
     }
 }
